@@ -6,58 +6,57 @@ import {
   ZoomableGroup,
 } from "react-simple-maps";
 import ReactTooltip from "react-tooltip";
-import JapanPref from "../assets/japan_pref.json";
+import JapanPref from "../../assets/data/japan_pref.json";
+import { HexArr } from "../ColorScale/ColorScale";
 
 const axios = require("axios");
 
-function addFill(mapData, hexArr) {
-  let updatedFill = {};
+interface MapData {
+  [prefecture: string]: {
+    first: string;
+    second: string;
+    fill?: string;
+  };
+}
+
+function addFill(mapData: MapData, HexArr: string[]) {
+  let updatedFill: MapData = {};
   for (let key of Object.keys(mapData)) {
-    const first = mapData[key].first * 100;
-    let fill = new String();
+    const first = parseFloat(mapData[key].first) * 100;
+    let fill: string;
     if (first < 2) {
-      fill = hexArr[0];
+      fill = HexArr[0];
     } else if (first < 5) {
-      fill = hexArr[1];
+      fill = HexArr[1];
     } else if (first < 10) {
-      fill = hexArr[2];
+      fill = HexArr[2];
     } else if (first < 20) {
-      fill = hexArr[3];
+      fill = HexArr[3];
     } else if (first < 30) {
-      fill = hexArr[4];
+      fill = HexArr[4];
     } else if (first < 40) {
-      fill = hexArr[5];
+      fill = HexArr[5];
     } else {
-      fill = hexArr[6];
+      fill = HexArr[6];
     }
-    updatedFill[key] = { ...mapData[key] };
+    updatedFill[key] = { ...mapData[key], fill: fill };
     updatedFill[key].fill = fill;
   }
   return updatedFill;
 }
 
-function JapanMap() {
-  const [mapData, setMapData] = useState({});
+const JapanMap: React.FC = () => {
+  const [mapData, setMapData] = useState<MapData>({});
   const [tooltip, setTooltip] = useState("");
   const [geoCode, setGeoCode] = useState("");
-
-  const hexArr = [
-    "#e7f6d6",
-    "#ace0a2",
-    "#7bc777",
-    "#52ab53",
-    "#308f35",
-    "#147219",
-    "#005600",
-  ];
 
   useEffect(() => {
     axios
       .get("http://localhost:5000/vaccines/current")
-      .then(function (resp) {
-        setMapData(addFill(resp.data, hexArr));
+      .then(function (resp: any) {
+        setMapData(addFill(resp.data, HexArr));
       })
-      .catch(function (err) {
+      .catch(function (err: string) {
         console.log(err);
       });
   }, []);
@@ -97,7 +96,11 @@ function JapanMap() {
                     tabIndex={-1}
                     role="img"
                     geography={geo}
-                    // fill = {}
+                    fill={
+                      Object.keys(mapData).length !== 0
+                        ? mapData[prefCode].fill
+                        : "#fff"
+                    }
                     onMouseEnter={() => {
                       setTooltip(geo.properties.ADM1_JA);
                       setGeoCode(prefCode.toString());
@@ -129,8 +132,12 @@ function JapanMap() {
           <>
             <p>{tooltip}</p>
             <ul style={{ listStyleType: "none", padding: 0 }}>
-              <li>1回: {(mapData[geoCode].first * 100).toFixed(2)}%</li>
-              <li>2回: {(mapData[geoCode].second * 100).toFixed(2)}%</li>
+              <li>
+                1回: {(parseFloat(mapData[geoCode].first) * 100).toFixed(2)}%
+              </li>
+              <li>
+                2回: {(parseFloat(mapData[geoCode].second) * 100).toFixed(2)}%
+              </li>
             </ul>
           </>
         ) : (
@@ -139,6 +146,6 @@ function JapanMap() {
       </ReactTooltip>
     </div>
   );
-}
+};
 
 export default memo(JapanMap);
