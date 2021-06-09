@@ -2,7 +2,7 @@ import React from "react";
 import Logo from "../../japanapp.svg";
 
 interface HeaderProps {
-  style: React.CSSProperties;
+  style?: React.CSSProperties;
 }
 
 const LogoHeader: React.FC<HeaderProps> = ({ style }) => {

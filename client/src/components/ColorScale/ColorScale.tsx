@@ -46,7 +46,11 @@ const ColorScale: React.FC = () => {
         }}
       >
         {ScaleValues.map((val) => {
-          return <div style={{ width: "2em" }}>{val}</div>;
+          return (
+            <div key={val} style={{ width: "2em" }}>
+              {val}
+            </div>
+          );
         })}
         <div style={{ position: "absolute", paddingLeft: "18em" }}>(%)</div>
       </div>

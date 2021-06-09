@@ -1,4 +1,4 @@
-import React, { memo, useEffect, useState } from "react";
+import React, { memo, useState } from "react";
 import {
   ComposableMap,
   Geographies,
@@ -7,11 +7,15 @@ import {
 } from "react-simple-maps";
 import ReactTooltip from "react-tooltip";
 import JapanPref from "../../assets/data/japan_pref.json";
-import { HexArr } from "../ColorScale/ColorScale";
 
 const axios = require("axios");
 
-interface MapData {
+interface JapanMapProps {
+  mapData: MapData;
+  style?: React.CSSProperties;
+}
+
+export interface MapData {
   [prefecture: string]: {
     first: string;
     second: string;
@@ -19,10 +23,10 @@ interface MapData {
   };
 }
 
-function addFill(mapData: MapData, HexArr: string[]) {
+export function addFill(mapData: MapData, HexArr: string[]) {
   let updatedFill: MapData = {};
   for (let key of Object.keys(mapData)) {
-    const first = parseFloat(mapData[key].first) * 100;
+    const first = parseFloat(mapData[key].first);
     let fill: string;
     if (first < 2) {
       fill = HexArr[0];
@@ -45,21 +49,9 @@ function addFill(mapData: MapData, HexArr: string[]) {
   return updatedFill;
 }
 
-const JapanMap: React.FC = () => {
-  const [mapData, setMapData] = useState<MapData>({});
+const JapanMap: React.FC<JapanMapProps> = ({ mapData }) => {
   const [tooltip, setTooltip] = useState("");
   const [geoCode, setGeoCode] = useState("");
-
-  useEffect(() => {
-    axios
-      .get("http://localhost:5000/vaccines/current")
-      .then(function (resp: any) {
-        setMapData(addFill(resp.data, HexArr));
-      })
-      .catch(function (err: string) {
-        console.log(err);
-      });
-  }, []);
 
   return (
     <div className="map">
@@ -99,7 +91,7 @@ const JapanMap: React.FC = () => {
                     fill={
                       Object.keys(mapData).length !== 0
                         ? mapData[prefCode].fill
-                        : "#fff"
+                        : "#f4f4f4"
                     }
                     onMouseEnter={() => {
                       setTooltip(geo.properties.ADM1_JA);
@@ -132,12 +124,8 @@ const JapanMap: React.FC = () => {
           <>
             <p>{tooltip}</p>
             <ul style={{ listStyleType: "none", padding: 0 }}>
-              <li>
-                1回: {(parseFloat(mapData[geoCode].first) * 100).toFixed(2)}%
-              </li>
-              <li>
-                2回: {(parseFloat(mapData[geoCode].second) * 100).toFixed(2)}%
-              </li>
+              <li>1回: {parseFloat(mapData[geoCode].first).toFixed(2)}%</li>
+              <li>2回: {parseFloat(mapData[geoCode].second).toFixed(2)}%</li>
             </ul>
           </>
         ) : (

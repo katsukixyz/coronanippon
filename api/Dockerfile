@@ -13,5 +13,4 @@ ENV PORT=5000
 
 EXPOSE 5000
 
-# CMD [ "nodemon", "-L", "index.js" ]
 CMD ["npm", "start"]
