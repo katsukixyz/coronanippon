@@ -9,6 +9,7 @@ import PrefTable, {
   TableData,
 } from "./components/PrefTable/PrefTable";
 import "./App.css";
+import PrefSelector from "./components/PrefSelector/PrefSelector";
 
 const axios = require("axios");
 
@@ -51,6 +52,7 @@ const App: React.FC = () => {
         <JapanMap mapData={mapData} />
         <ColorScale />
         <PrefTable tableData={tableData} />
+        <PrefSelector />
         <ChartWrapper
           selectedPref={selectedPref}
           previousVaccineToggle={previousVaccineToggle}
