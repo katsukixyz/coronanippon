@@ -32,6 +32,20 @@ services:
       POSTGRES_DB: coronanippon_db
     volumes:
       - db-data:/var/lib/postgresql/data/
+
+  graphql-engine:
+    container_name: hasura
+    image: hasura/graphql-engine:latest
+    ports:
+      - "8080:8080"
+    depends_on:
+      - db
+    restart: always
+    environment:
+      HASURA_GRAPHQL_DATABASE_URL: postgres://root:root@db:5432/coronanippon_db
+      HASURA_GRAPHQL_ENABLE_CONSOLE: "true"
+      HASURA_GRAPHQL_DEV_MODE: "true"
+      HASURA_GRAPHQL_ENABLED_LOG_TYPES: startup, http-log, webhook-log, websocket-log, query-log
   data:
     container_name: data
     depends_on:

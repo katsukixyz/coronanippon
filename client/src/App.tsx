@@ -52,7 +52,7 @@ const App: React.FC = () => {
         <JapanMap mapData={mapData} />
         <ColorScale />
         <PrefTable tableData={tableData} />
-        <PrefSelector />
+        <PrefSelector setSelectedPref={setSelectedPref} />
         <ChartWrapper
           selectedPref={selectedPref}
           previousVaccineToggle={previousVaccineToggle}

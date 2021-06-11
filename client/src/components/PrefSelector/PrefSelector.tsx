@@ -1,13 +1,22 @@
-import React from "react";
-import Select from "react-select";
+import React, { WebViewHTMLAttributes } from "react";
+import Select, { ValueType } from "react-select";
+import prefOptions from "../../assets/labels/prefOptions.json";
 import "../../App.css";
 
-const PrefSelector: React.FC = () => {
-  const options = [
-    { value: "chocolate", label: "Chocolate" },
-    { value: "strawberry", label: "Strawberry" },
-    { value: "vanilla", label: "Vanilla" },
-  ];
+interface PrefSelectorProps {
+  setSelectedPref: React.Dispatch<React.SetStateAction<number>>;
+}
+
+type Options = {
+  label: string;
+  value: number;
+};
+
+const PrefSelector: React.FC<PrefSelectorProps> = ({ setSelectedPref }) => {
+  const onSelectChange = (obj: ValueType<Options, false>) => {
+    setSelectedPref(obj!.value);
+  };
+
   return (
     <Select
       styles={{
@@ -27,7 +36,8 @@ const PrefSelector: React.FC = () => {
           color: "black",
         }),
       }}
-      options={options}
+      options={prefOptions}
+      onChange={onSelectChange}
     />
   );
 };

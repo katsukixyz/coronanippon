@@ -14,7 +14,7 @@ const FrappeChart: React.FC<FrappeChartProps> = ({
     new Chart(`#${parent}`, {
       ...chartAttributes,
     });
-  }, []);
+  });
 
   return <div id={parent} />;
 };

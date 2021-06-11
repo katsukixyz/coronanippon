@@ -6,7 +6,7 @@ import {
   ZoomableGroup,
 } from "react-simple-maps";
 import ReactTooltip from "react-tooltip";
-import JapanPref from "../../assets/data/japan_pref.json";
+import JapanPref from "../../assets/map/japan_pref.json";
 
 const axios = require("axios");
 
