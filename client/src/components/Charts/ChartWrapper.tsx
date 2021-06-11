@@ -1,5 +1,6 @@
 import React from "react";
-import DailyNew from "./DailyNew/DailyNew";
+import DailyNumber from "./DailyNumber/DailyNumber";
+import DailyPercentage from "./DailyPercentage/DailyPercentage";
 import PreviousNumber from "./PreviousNumber/PreviousNumber";
 import PreviousPercentage from "./PreviousPercentage/PreviousPercentage";
 
@@ -15,11 +16,16 @@ const ChartWrapper: React.FC<ChartWrapperProps> = ({
   return (
     <div>
       {previousVaccineToggle === "number" ? (
-        <PreviousNumber selectedPref={selectedPref} />
+        <>
+          <PreviousNumber selectedPref={selectedPref} />
+          <DailyNumber selectedPref={selectedPref} />
+        </>
       ) : (
-        <PreviousPercentage selectedPref={selectedPref} />
+        <>
+          <PreviousPercentage selectedPref={selectedPref} />
+          <DailyPercentage selectedPref={selectedPref} />
+        </>
       )}
-      <DailyNew selectedPref={selectedPref} />
     </div>
   );
 };

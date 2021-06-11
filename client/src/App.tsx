@@ -10,6 +10,7 @@ import PrefTable, {
 } from "./components/PrefTable/PrefTable";
 import "./App.css";
 import PrefSelector from "./components/PrefSelector/PrefSelector";
+import Toggle from "./components/Toggle/Toggle";
 
 const axios = require("axios");
 
@@ -53,6 +54,10 @@ const App: React.FC = () => {
         <ColorScale />
         <PrefTable tableData={tableData} />
         <PrefSelector setSelectedPref={setSelectedPref} />
+        <Toggle
+          previousVaccineToggle={previousVaccineToggle}
+          setPreviousVaccineToggle={setPreviousVaccineToggle}
+        />
         <ChartWrapper
           selectedPref={selectedPref}
           previousVaccineToggle={previousVaccineToggle}

@@ -4,20 +4,20 @@ import { ChartProps, ServerResp } from "../ChartTypes";
 
 const axios = require("axios");
 
-const DailyNew: React.FC<ChartProps> = ({ selectedPref, style }) => {
-  const [dailyNewData, setDailyNewData] = useState<ServerResp>();
+const DailyPercentage: React.FC<ChartProps> = ({ selectedPref, style }) => {
+  const [dailyPercentageData, setDailyPercentageData] = useState<ServerResp>();
 
   useEffect(() => {
     axios
-      .get(`http://localhost:5000/vaccines/${selectedPref}/newnumber`)
+      .get(`http://localhost:5000/vaccines/${selectedPref}/newpercentage`)
       .then(function (resp: any) {
-        setDailyNewData(resp.data);
+        setDailyPercentageData(resp.data);
       });
   }, [selectedPref]);
 
   const chartAttributes = {
     data: {
-      ...dailyNewData,
+      ...dailyPercentageData,
     },
     type: "line",
     colors: ["light-green", "green"],
@@ -33,12 +33,12 @@ const DailyNew: React.FC<ChartProps> = ({ selectedPref, style }) => {
   };
 
   return (
-    <div className="dailyNew" style={style}>
-      {dailyNewData ? (
-        <FrappeChart parent="dailyNewChart" {...chartAttributes} />
+    <div className="dailyPercentage" style={style}>
+      {dailyPercentageData ? (
+        <FrappeChart parent="dailyPercentageChart" {...chartAttributes} />
       ) : null}
     </div>
   );
 };
 
-export default memo(DailyNew);
+export default memo(DailyPercentage);

@@ -1,4 +1,4 @@
-import React, { WebViewHTMLAttributes } from "react";
+import React from "react";
 import Select, { ValueType } from "react-select";
 import prefOptions from "../../assets/labels/prefOptions.json";
 import "../../App.css";
@@ -38,6 +38,7 @@ const PrefSelector: React.FC<PrefSelectorProps> = ({ setSelectedPref }) => {
       }}
       options={prefOptions}
       onChange={onSelectChange}
+      defaultValue={{ label: "全国", value: 0 }}
     />
   );
 };
