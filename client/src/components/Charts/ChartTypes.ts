@@ -2,6 +2,20 @@ import React from "react";
 
 export interface ChartProps {
   selectedPref: number;
+  previousVaccineToggle: string;
+  chartAttrs: {
+    type: string;
+    colors: string[];
+    axisOptions: {
+      xAxisMode: string;
+      xIsSeries: number;
+    };
+    lineOptions: {
+      hideDots: number;
+      spline: number;
+      regionFill: number;
+    };
+  };
   style?: React.CSSProperties;
 }
 

@@ -50,7 +50,7 @@ const App: React.FC = () => {
     <div className="App">
       <div className="content">
         <LogoHeader style={{ paddingTop: "2em" }} />
-        <JapanMap mapData={mapData} />
+        <JapanMap mapData={mapData} setSelectedPref={setSelectedPref} />
         <ColorScale />
         <PrefTable tableData={tableData} />
         <PrefSelector setSelectedPref={setSelectedPref} />

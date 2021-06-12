@@ -1,8 +1,6 @@
-import React from "react";
-import DailyNumber from "./DailyNumber/DailyNumber";
-import DailyPercentage from "./DailyPercentage/DailyPercentage";
-import PreviousNumber from "./PreviousNumber/PreviousNumber";
-import PreviousPercentage from "./PreviousPercentage/PreviousPercentage";
+import React, { useEffect, useState } from "react";
+import Daily from "./Daily/Daily";
+import Previous from "./Previous/Previous";
 
 interface ChartWrapperProps {
   selectedPref: number;
@@ -13,18 +11,36 @@ const ChartWrapper: React.FC<ChartWrapperProps> = ({
   selectedPref,
   previousVaccineToggle,
 }) => {
+  const chartAttrs = {
+    type: "line",
+    colors: ["light-green", "green"],
+    axisOptions: {
+      xAxisMode: "tick",
+      xIsSeries: 1,
+    },
+    lineOptions: {
+      hideDots: 1,
+      spline: 1,
+      regionFill: 1,
+    },
+  };
   return (
     <div>
-      {previousVaccineToggle === "number" ? (
+      {previousVaccineToggle ? (
         <>
-          <PreviousNumber selectedPref={selectedPref} />
-          <DailyNumber selectedPref={selectedPref} />
+          <Previous
+            selectedPref={selectedPref}
+            chartAttrs={chartAttrs}
+            previousVaccineToggle={previousVaccineToggle}
+          />
+          <Daily
+            selectedPref={selectedPref}
+            chartAttrs={chartAttrs}
+            previousVaccineToggle={previousVaccineToggle}
+          />
         </>
       ) : (
-        <>
-          <PreviousPercentage selectedPref={selectedPref} />
-          <DailyPercentage selectedPref={selectedPref} />
-        </>
+        <div />
       )}
     </div>
   );
