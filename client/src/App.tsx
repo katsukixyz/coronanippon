@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from "react";
 import LogoHeader from "./components/LogoHeader/LogoHeader";
 import JapanMap, { MapData, addFill } from "./components/JapanMap/JapanMap";
-import { HexArr } from "./components/ColorScale/ColorScale";
-import ColorScale from "./components/ColorScale/ColorScale";
+import ColorScale, { HexArr } from "./components/ColorScale/ColorScale";
 import ChartWrapper from "./components/Charts/ChartWrapper";
 import PrefTable, {
   addBackgroundFill,
@@ -53,7 +52,10 @@ const App: React.FC = () => {
         <JapanMap mapData={mapData} setSelectedPref={setSelectedPref} />
         <ColorScale />
         <PrefTable tableData={tableData} />
-        <PrefSelector setSelectedPref={setSelectedPref} />
+        <PrefSelector
+          selectedPref={selectedPref}
+          setSelectedPref={setSelectedPref}
+        />
         <Toggle
           previousVaccineToggle={previousVaccineToggle}
           setPreviousVaccineToggle={setPreviousVaccineToggle}

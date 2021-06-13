@@ -50,7 +50,7 @@ export function addFill(mapData: MapData, HexArr: string[]) {
   return updatedFill;
 }
 
-const JapanMap: React.FC<JapanMapProps> = ({ mapData }) => {
+const JapanMap: React.FC<JapanMapProps> = ({ mapData, setSelectedPref }) => {
   const [tooltip, setTooltip] = useState("");
   const [geoCode, setGeoCode] = useState("");
 
@@ -94,6 +94,7 @@ const JapanMap: React.FC<JapanMapProps> = ({ mapData }) => {
                         ? mapData[prefCode].fill
                         : "#f4f4f4"
                     }
+                    onClick={() => setSelectedPref(prefCode)}
                     onMouseEnter={() => {
                       setTooltip(geo.properties.ADM1_JA);
                       setGeoCode(prefCode.toString());
@@ -108,6 +109,7 @@ const JapanMap: React.FC<JapanMapProps> = ({ mapData }) => {
                       },
                       hover: {
                         outline: "none",
+                        cursor: "pointer",
                       },
                       pressed: {
                         outline: "none",

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import Daily from "./Daily/Daily";
 import Previous from "./Previous/Previous";
 

@@ -1,6 +1,6 @@
 import React, { memo, useEffect, useState } from "react";
 import { Chart } from "frappe-charts";
-import { ChartProps, ServerResp } from "../ChartTypes";
+import { ChartProps, ChartResp } from "../ChartTypes";
 
 const axios = require("axios");
 
@@ -17,9 +17,9 @@ const Previous: React.FC<ChartProps> = ({
       .get(
         `http://localhost:5000/vaccines/${selectedPref}/${previousVaccineToggle}`
       )
-      .then(function (resp: any) {
+      .then(function (resp: ChartResp) {
         const chart = new Chart(".previous", {
-          data: { ...resp.data },
+          data: resp.data,
           ...chartAttrs,
         });
         setPreviousChart(chart);
@@ -31,7 +31,7 @@ const Previous: React.FC<ChartProps> = ({
       .get(
         `http://localhost:5000/vaccines/${selectedPref}/${previousVaccineToggle}`
       )
-      .then(function (resp: any) {
+      .then(function (resp: ChartResp) {
         if (previousChart !== undefined) {
           previousChart.update(resp.data);
         }

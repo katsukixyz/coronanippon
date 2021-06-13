@@ -19,13 +19,15 @@ export interface ChartProps {
   style?: React.CSSProperties;
 }
 
-export interface ServerResp {
-  labels: string[];
-  datasets: [
-    {
-      name: string;
-      values: number[];
-      chartType: string;
-    }
-  ];
+export interface ChartResp {
+  data: {
+    labels: string[];
+    datasets: [
+      {
+        name: string;
+        values: number[];
+        chartType: string;
+      }
+    ];
+  };
 }

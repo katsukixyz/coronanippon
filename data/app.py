@@ -8,7 +8,8 @@ from sqlalchemy.types import String, Integer, Date, Boolean
 import time
 
 def fetchVaccines():
-    r = requests.get("https://vrs-data.cio.go.jp/vaccination/opendata/latest/prefecture.ndjson")
+    url = "https://vrs-data.cio.go.jp/vaccination/opendata/latest/prefecture.ndjson"
+    r = requests.get(url)
 
     parsed_r = r.json(cls=ndjson.Decoder)
 
@@ -36,7 +37,7 @@ if __name__ == '__main__':
     try:
         pref.to_sql('prefectures', con = dbConnection, index = False, if_exists = 'fail', dtype = {"id": Integer(), "name": String(), "population": Integer()})
     except:
-        print("Database already exists. Skipping 'prefectures' table creation.")
+        print("'Prefectures' table already exists. Skipping table creation.")
 
     starttime = time.time()
 
