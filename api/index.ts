@@ -3,15 +3,17 @@ import cors from "cors";
 import dayjs from "dayjs";
 import "dayjs/locale/ja";
 import { Pool } from "pg";
+import { connectionString } from "./pool";
 
 const app = express();
+
+const isProduction = process.env.NODE_ENV === "production";
+
 const pool = new Pool({
-  user: "root",
-  host: "db",
-  database: "coronanippon_db",
-  password: "root",
-  port: 5432,
+  connectionString: isProduction ? process.env.DATABASE_URL : connectionString,
+  ssl: isProduction,
 });
+
 const PORT = 5000;
 
 app.use(cors({ origin: "http://localhost:3000" }));
@@ -198,4 +200,4 @@ app.get(
   }
 );
 
-app.listen(PORT, () => console.log(`Listening on localhost:${PORT}/`));
+app.listen(PORT, () => console.log(`Listening.`));
