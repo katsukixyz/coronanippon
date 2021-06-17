@@ -87,26 +87,12 @@ app.get(
           throw err;
         } else {
           const data = result.rows;
-          const labels = data.map((e) =>
-            dayjs(e.date).locale("ja").format("M/D")
-          );
-          const firstValues = data.map((e) => parseInt(e.first));
-          const secondValues = data.map((e) => parseInt(e.second));
-
-          const datasets = [
-            {
-              name: "1回",
-              values: firstValues,
-              chartType: "line",
-            },
-            {
-              name: "2回",
-              values: secondValues,
-              chartType: "line",
-            },
-          ];
-
-          res.status(200).json({ labels: labels, datasets: datasets });
+          const out = data.map((e) => ({
+            date: dayjs(e.date).locale("ja").format("M/D"),
+            first: parseInt(e.first),
+            second: parseInt(e.second),
+          }));
+          res.status(200).json(out);
         }
       });
     } else if (type === "percentage") {
@@ -138,25 +124,12 @@ app.get(
           throw err;
         } else {
           const data = result.rows;
-          const labels = data.map((e) =>
-            dayjs(e.date).locale("ja").format("M/D")
-          );
-          const firstValues = data.map((e) => e.first.toFixed(2));
-          const secondValues = data.map((e) => e.second.toFixed(2));
-
-          const datasets = [
-            {
-              name: "1回",
-              values: firstValues,
-              chartType: "line",
-            },
-            {
-              name: "2回",
-              values: secondValues,
-              chartType: "line",
-            },
-          ];
-          res.status(200).json({ labels: labels, datasets: datasets });
+          const out = data.map((e) => ({
+            first: parseFloat(e.first.toFixed(2)),
+            second: parseFloat(e.second.toFixed(2)),
+            date: dayjs(e.date).locale("ja").format("M/D"),
+          }));
+          res.status(200).json(out);
         }
       });
     } else if (type === "newnumber") {
@@ -181,26 +154,12 @@ app.get(
           throw err;
         } else {
           const data = result.rows;
-          const labels = data.map((e) =>
-            dayjs(e.date).locale("ja").format("M/D")
-          );
-          const firstValues = data.map((e) => parseInt(e.first));
-          const secondValues = data.map((e) => parseInt(e.second));
-
-          const datasets = [
-            {
-              name: "1回",
-              values: firstValues,
-              chartType: "line",
-            },
-            {
-              name: "2回",
-              values: secondValues,
-              chartType: "line",
-            },
-          ];
-
-          res.status(200).json({ labels: labels, datasets: datasets });
+          const out = data.map((e) => ({
+            date: dayjs(e.date).locale("ja").format("M/D"),
+            first: parseInt(e.first),
+            second: parseInt(e.second),
+          }));
+          res.status(200).json(out);
         }
       });
     } else if (type === "newpercentage") {
@@ -227,26 +186,12 @@ app.get(
           throw err;
         } else {
           const data = result.rows;
-          const labels = data.map((e) =>
-            dayjs(e.date).locale("ja").format("M/D")
-          );
-          const firstValues = data.map((e) => parseFloat(e.first).toFixed(2));
-          const secondValues = data.map((e) => parseFloat(e.second).toFixed(2));
-
-          const datasets = [
-            {
-              name: "1回",
-              values: firstValues,
-              chartType: "line",
-            },
-            {
-              name: "2回",
-              values: secondValues,
-              chartType: "line",
-            },
-          ];
-
-          res.status(200).json({ labels: labels, datasets: datasets });
+          const out = data.map((e) => ({
+            first: parseFloat(e.first.toFixed(2)),
+            second: parseFloat(e.second.toFixed(2)),
+            date: dayjs(e.date).locale("ja").format("M/D"),
+          }));
+          res.status(200).json(out);
         }
       });
     }

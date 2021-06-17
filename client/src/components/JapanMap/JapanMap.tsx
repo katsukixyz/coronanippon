@@ -58,16 +58,16 @@ const JapanMap: React.FC<JapanMapProps> = ({ mapData, setSelectedPref }) => {
     <div className="map">
       <ComposableMap
         projection="geoMercator"
-        height={400}
-        width={600}
-        projectionConfig={{ scale: 900, center: [139, 36] }}
+        height={180}
+        width={220}
+        projectionConfig={{ scale: 550, center: [135, 39] }}
         data-tip=""
       >
         <ZoomableGroup
           center={[0, 0]}
           translateExtent={[
-            [0, 0],
-            [600, 410],
+            [-10, 0],
+            [220, 240],
           ]}
           maxZoom={3}
         >

@@ -1,5 +1,9 @@
 import React from "react";
 
+interface ColorScaleProps {
+  style?: React.CSSProperties;
+}
+
 export const HexArr = [
   "#e7f6d6",
   "#ace0a2",
@@ -12,16 +16,10 @@ export const HexArr = [
 
 const ScaleValues = [0, 2, 5, 10, 20, 30, 40, "40+"];
 
-const ColorScale: React.FC = () => {
+const ColorScale: React.FC<ColorScaleProps> = ({ style }) => {
   return (
     <>
-      <div
-        style={{
-          display: "flex",
-          flexDirection: "row",
-          justifyContent: "center",
-        }}
-      >
+      <div style={style}>
         {HexArr.map((color) => {
           return (
             <div

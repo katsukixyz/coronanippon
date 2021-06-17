@@ -13,7 +13,7 @@ const Toggle: React.FC<ToggleProps> = ({
 }) => {
   const enabled = previousVaccineToggle === "number" ? false : true;
   return (
-    <div className="py-16">
+    <div>
       <Switch
         checked={enabled}
         onChange={(bool) =>

@@ -6,6 +6,7 @@ import "../../App.css";
 interface PrefSelectorProps {
   selectedPref: number;
   setSelectedPref: React.Dispatch<React.SetStateAction<number>>;
+  style?: React.CSSProperties;
 }
 
 type Options = {
@@ -16,6 +17,7 @@ type Options = {
 const PrefSelector: React.FC<PrefSelectorProps> = ({
   selectedPref,
   setSelectedPref,
+  style,
 }) => {
   const onSelectChange = (obj: ValueType<Options, false>) => {
     setSelectedPref(obj!.value);
@@ -24,29 +26,32 @@ const PrefSelector: React.FC<PrefSelectorProps> = ({
   const selectedPrefObj = prefOptions.find((e) => e.value === selectedPref)!;
 
   return (
-    <Select
-      value={selectedPrefObj}
-      styles={{
-        control: (base) => ({
-          ...base,
-          border: 0,
-          boxShadow: "none",
-        }),
-        option: (provided, { isSelected, isFocused }) => ({
-          ...provided,
-          backgroundColor: isSelected
-            ? "#ace0a2"
-            : isFocused
-            ? "#e7f6d6"
-            : "#fff",
-          ":active": { ...provided[":active"], backgroundColor: "#e7f6d6" },
-          color: "black",
-        }),
-      }}
-      options={prefOptions}
-      onChange={onSelectChange}
-      defaultValue={{ label: "全国", value: 0 }}
-    />
+    <div style={style}>
+      <Select
+        value={selectedPrefObj}
+        styles={{
+          control: (base) => ({
+            ...base,
+            border: 0,
+            boxShadow: "none",
+          }),
+          option: (provided, { isSelected, isFocused }) => ({
+            ...provided,
+            backgroundColor: isSelected
+              ? "#ace0a2"
+              : isFocused
+              ? "#e7f6d6"
+              : "#fff",
+            ":active": { ...provided[":active"], backgroundColor: "#e7f6d6" },
+            color: "black",
+          }),
+        }}
+        options={prefOptions}
+        onChange={onSelectChange}
+        defaultValue={{ label: "全国", value: 0 }}
+        noOptionsMessage={() => null}
+      />
+    </div>
   );
 };
 

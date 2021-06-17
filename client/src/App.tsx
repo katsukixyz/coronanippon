@@ -47,20 +47,72 @@ const App: React.FC = () => {
 
   return (
     <div className="App">
-      <div className="content">
+      <div className="content" style={{ paddingBottom: "2em" }}>
         <LogoHeader style={{ paddingTop: "2em" }} />
-        <JapanMap mapData={mapData} setSelectedPref={setSelectedPref} />
-        <ColorScale />
-        <PrefTable tableData={tableData} />
-        <PrefSelector
-          selectedPref={selectedPref}
-          setSelectedPref={setSelectedPref}
-        />
-        <Toggle
-          previousVaccineToggle={previousVaccineToggle}
-          setPreviousVaccineToggle={setPreviousVaccineToggle}
-        />
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "row",
+            flexWrap: "wrap",
+            justifyContent: "space-around",
+          }}
+        >
+          <div style={{ width: "50%", paddingBottom: "2em" }}>
+            <JapanMap mapData={mapData} setSelectedPref={setSelectedPref} />
+            <ColorScale
+              style={{
+                paddingTop: "1em",
+                display: "flex",
+                flexDirection: "row",
+                justifyContent: "center",
+              }}
+            />
+          </div>
+          <PrefTable
+            style={{
+              overflowX: "auto",
+              overflowY: "scroll",
+              width: "18em",
+              height: "34em",
+            }}
+            tableData={tableData}
+          />
+        </div>
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "row",
+            justifyContent: "center",
+            paddingBottom: "2em",
+          }}
+        >
+          <PrefSelector
+            style={{ minWidth: "14em", paddingRight: "2em" }}
+            selectedPref={selectedPref}
+            setSelectedPref={setSelectedPref}
+          />
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              paddingTop: "0.5em",
+            }}
+          >
+            <p style={{ paddingRight: "1em" }}>人</p>
+            <Toggle
+              previousVaccineToggle={previousVaccineToggle}
+              setPreviousVaccineToggle={setPreviousVaccineToggle}
+            />
+            <p style={{ paddingLeft: "1em" }}>%</p>
+          </div>
+        </div>
         <ChartWrapper
+          style={{
+            display: "flex",
+            flexDirection: "row",
+            flexWrap: "wrap",
+            justifyContent: "space-evenly",
+          }}
           selectedPref={selectedPref}
           previousVaccineToggle={previousVaccineToggle}
         />

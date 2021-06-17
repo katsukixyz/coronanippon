@@ -51,18 +51,11 @@ export function addBackgroundFill(data: TableValues[], HexArr: string[]) {
   return updatedFill;
 }
 
-const PrefTable: React.FC<TableProps> = ({ tableData }) => {
+const PrefTable: React.FC<TableProps> = ({ tableData, style }) => {
   const { data, columns } = tableData;
 
   return (
-    <div
-      style={{
-        overflowX: "auto",
-        overflowY: "scroll",
-        width: "21em",
-        height: "50em",
-      }}
-    >
+    <div style={style}>
       <table style={{ borderCollapse: "separate", borderSpacing: 0 }}>
         <thead>
           <tr>

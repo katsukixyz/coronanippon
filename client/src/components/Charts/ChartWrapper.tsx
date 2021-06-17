@@ -5,40 +5,29 @@ import Previous from "./Previous/Previous";
 interface ChartWrapperProps {
   selectedPref: number;
   previousVaccineToggle: string;
+  style?: React.CSSProperties;
 }
 
 const ChartWrapper: React.FC<ChartWrapperProps> = ({
   selectedPref,
   previousVaccineToggle,
+  style,
 }) => {
-  const chartAttrs = {
-    type: "line",
-    colors: ["light-green", "green"],
-    axisOptions: {
-      xAxisMode: "tick",
-      xIsSeries: 1,
-    },
-    lineOptions: {
-      hideDots: 1,
-      spline: 1,
-      regionFill: 1,
-    },
-  };
   return (
     <div>
       {previousVaccineToggle ? (
-        <>
+        <div style={style}>
           <Previous
             selectedPref={selectedPref}
-            chartAttrs={chartAttrs}
             previousVaccineToggle={previousVaccineToggle}
+            style={{ maxWidth: "45%" }}
           />
           <Daily
             selectedPref={selectedPref}
-            chartAttrs={chartAttrs}
             previousVaccineToggle={previousVaccineToggle}
+            style={{ maxWidth: "45%" }}
           />
-        </>
+        </div>
       ) : (
         <div />
       )}

@@ -1,16 +1,26 @@
 import React, { memo, useEffect, useState } from "react";
-import { Chart } from "frappe-charts";
+import {
+  LineChart,
+  AreaChart,
+  Area,
+  Line,
+  CartesianGrid,
+  XAxis,
+  YAxis,
+  Tooltip,
+  Legend,
+  Label,
+} from "recharts";
 import { ChartProps, ChartResp } from "../ChartTypes";
 
 const axios = require("axios");
 
 const Previous: React.FC<ChartProps> = ({
   selectedPref,
-  chartAttrs,
   previousVaccineToggle,
   style,
 }) => {
-  const [previousChart, setPreviousChart] = useState<any>();
+  const [previousChartData, setPreviousChartData] = useState<any>();
 
   useEffect(() => {
     axios
@@ -18,27 +28,68 @@ const Previous: React.FC<ChartProps> = ({
         `http://localhost:5000/vaccines/${selectedPref}/${previousVaccineToggle}`
       )
       .then(function (resp: ChartResp) {
-        const chart = new Chart(".previous", {
-          data: resp.data,
-          ...chartAttrs,
-        });
-        setPreviousChart(chart);
-      });
-  }, []);
-
-  useEffect(() => {
-    axios
-      .get(
-        `http://localhost:5000/vaccines/${selectedPref}/${previousVaccineToggle}`
-      )
-      .then(function (resp: ChartResp) {
-        if (previousChart !== undefined) {
-          previousChart.update(resp.data);
-        }
+        setPreviousChartData(resp.data);
       });
   }, [selectedPref, previousVaccineToggle]);
 
-  return <div className="previous" style={style}></div>;
+  return (
+    <div>
+      <p style={{ fontWeight: "bold", fontSize: "1.5em" }}>
+        {previousVaccineToggle === "number" ? "接種数累計" : "接種率累計"}
+      </p>
+      <AreaChart
+        width={500}
+        height={500}
+        margin={{ top: 20, right: 0, left: 50 }}
+        data={previousChartData}
+      >
+        <defs>
+          <linearGradient id="colorUv" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="5%" stopColor="#7bc777" stopOpacity={0.8} />
+            <stop offset="99%" stopColor="#7bc777" stopOpacity={0.1} />
+          </linearGradient>
+          <linearGradient id="colorPv" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="5%" stopColor="#308f35" stopOpacity={0.8} />
+            <stop offset="99%" stopColor="#308f35" stopOpacity={0.1} />
+          </linearGradient>
+        </defs>
+        <Area
+          type="monotone"
+          dataKey="first"
+          name="1回"
+          fillOpacity={1}
+          stroke="#7bc777"
+          fill="url(#colorUv)"
+        />
+        <Area
+          type="monotone"
+          dataKey="second"
+          name="2回"
+          fillOpacity={1}
+          stroke="#308f35"
+          fill="url(#colorUv)"
+        />
+        <CartesianGrid strokeDasharray="3 3" />
+        <XAxis dataKey="date" />
+        <YAxis>
+          <Label
+            value={previousVaccineToggle === "number" ? "人" : "%"}
+            position="left"
+            angle={-90}
+            offset={40}
+          />
+        </YAxis>
+        <Tooltip
+          formatter={
+            previousVaccineToggle === "percentage"
+              ? (value: string) => value + "%"
+              : (value: string) => value + "人"
+          }
+        />
+        <Legend />
+      </AreaChart>
+    </div>
+  );
 };
 
 export default memo(Previous);
