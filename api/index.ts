@@ -14,9 +14,8 @@ const pool = new Pool({
   ssl: isProduction,
 });
 
-const PORT = 5000;
-
-app.use(cors({ origin: "http://localhost:3000" }));
+// app.use(cors({ origin: "http://localhost:3000" }));
+app.use(cors());
 
 app.get("/vaccines/current", (req: express.Request, res: express.Response) => {
   pool.query(
@@ -200,4 +199,4 @@ app.get(
   }
 );
 
-app.listen(PORT, () => console.log(`Listening.`));
+app.listen(process.env.PORT || 5000, () => console.log(`Listening.`));

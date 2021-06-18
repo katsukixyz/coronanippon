@@ -6,6 +6,9 @@ import numpy as np
 from sqlalchemy import create_engine
 from sqlalchemy.types import String, Integer, Date, Boolean
 import time
+import os
+from dotenv import load_dotenv
+
 
 def fetchVaccines():
     url = "https://vrs-data.cio.go.jp/vaccination/opendata/latest/prefecture.ndjson"
@@ -30,7 +33,17 @@ def fetchPref():
     return final
 
 if __name__ == '__main__':
-    alchemyEngine = create_engine('postgresql+psycopg2://root:root@db:5432/coronanippon_db', pool_recycle=3600)
+    load_dotenv()
+
+    if os.environ['DATABASE_URL']:
+        connection_str = os.environ['DATABASE_URL']
+    else:
+        env_list = ['DB_USER', 'DB_PASSWORD', 'DB_DATABASE', 'DB_HOST', 'DB_PORT']
+        env_dict = {x.split('DB_')[1]: os.getenv(x) for x in env_list}
+        connection_str = os.getenv(f"postgresql+psycopg2://{env_dict['USER']}:{env_dict['PASSWORD']}@{env_dict['HOST']}:{env_dict['PORT']}/{env_dict['DATABASE']}")
+
+    # alchemyEngine = create_engine('postgresql+psycopg2://root:root@db:5432/coronanippon_db', pool_recycle=3600)
+    alchemyEngine = create_engine(connection_str)
     dbConnection = alchemyEngine.connect()
 
     pref = fetchPref()

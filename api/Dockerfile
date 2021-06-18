@@ -11,6 +11,9 @@ COPY . .
 
 ENV PORT=5000
 
+ENV NODE_ENV=production
+ENV NODE_TLS_REJECT_UNAUTHORIZED=0
+
 EXPOSE 5000
 
 CMD ["npm", "start"]
