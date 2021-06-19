@@ -7,11 +7,8 @@ import { connectionString } from "./pool";
 
 const app = express();
 
-const isProduction = process.env.NODE_ENV === "production";
-
 const pool = new Pool({
-  connectionString: isProduction ? process.env.DATABASE_URL : connectionString,
-  ssl: isProduction,
+  connectionString: connectionString,
 });
 
 // app.use(cors({ origin: "http://localhost:3000" }));
