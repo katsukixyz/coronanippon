@@ -1,4 +1,5 @@
 node_modules
+build
 .ipynb_checkpoints
 .DS_Store
 .vscode

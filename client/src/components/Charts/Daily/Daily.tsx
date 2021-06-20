@@ -25,7 +25,7 @@ const Daily: React.FC<ChartProps> = ({
   useEffect(() => {
     axios
       .get(
-        `http://localhost:5000/vaccines/${selectedPref}/new${previousVaccineToggle}`
+        `http://${process.env.API_ENDPOINT}/vaccines/${selectedPref}/new${previousVaccineToggle}`
       )
       .then(function (resp: ChartResp) {
         setDailyChartData(resp.data);

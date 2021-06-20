@@ -32,7 +32,7 @@ const App: React.FC = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:5000/vaccines/current")
+      .get(`http://${process.env.API_ENDPOINT}/vaccines/current`)
       .then(function (resp: ServerResp) {
         setMapData(addFill(resp.data.mapData, HexArr));
         setTableData({
