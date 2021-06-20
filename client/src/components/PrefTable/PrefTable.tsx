@@ -1,5 +1,4 @@
 import React, { memo } from "react";
-import { HexArr } from "../ColorScale/ColorScale";
 import "../../App.css";
 
 interface TableProps {

@@ -1,8 +1,6 @@
-import React, { memo, useEffect, useRef, useState } from "react";
+import React, { memo, useEffect, useState } from "react";
 import {
   LineChart,
-  AreaChart,
-  Area,
   Line,
   CartesianGrid,
   XAxis,

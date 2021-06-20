@@ -1,9 +1,7 @@
 import React, { memo, useEffect, useState } from "react";
 import {
-  LineChart,
   AreaChart,
   Area,
-  Line,
   CartesianGrid,
   XAxis,
   YAxis,

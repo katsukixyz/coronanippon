@@ -8,8 +8,6 @@ import {
 import ReactTooltip from "react-tooltip";
 import JapanPref from "../../assets/map/japan_pref.json";
 
-const axios = require("axios");
-
 interface JapanMapProps {
   mapData: MapData;
   setSelectedPref: React.Dispatch<React.SetStateAction<number>>;
