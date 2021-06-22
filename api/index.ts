@@ -9,7 +9,6 @@ const app = express();
 
 const pool = new Pool({
   connectionString: connectionString,
-  ssl: true,
 });
 
 // app.use(cors({ origin: "http://localhost:3000" }));
