@@ -6,15 +6,13 @@ export interface ChartProps {
   style?: React.CSSProperties;
 }
 
+export interface ChartData {
+  date: string;
+  first: number;
+  second: number;
+}
+
 export interface ChartResp {
-  data: {
-    labels: string[];
-    datasets: [
-      {
-        name: string;
-        values: number[];
-        chartType: string;
-      }
-    ];
-  };
+  [otherKeys: string]: any;
+  data: ChartData[];
 }

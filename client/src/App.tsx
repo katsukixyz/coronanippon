@@ -10,8 +10,7 @@ import PrefTable, {
 import "./App.css";
 import PrefSelector from "./components/PrefSelector/PrefSelector";
 import Toggle from "./components/Toggle/Toggle";
-
-const axios = require("axios");
+import axios from "axios";
 
 interface ServerResp {
   [otherKeys: string]: any;

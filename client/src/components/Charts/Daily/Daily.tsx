@@ -9,16 +9,15 @@ import {
   Legend,
   Label,
 } from "recharts";
-import { ChartProps, ChartResp } from "../ChartTypes";
-
-const axios = require("axios");
+import { ChartData, ChartProps, ChartResp } from "../ChartTypes";
+import axios from "axios";
 
 const Daily: React.FC<ChartProps> = ({
   selectedPref,
   previousVaccineToggle,
   style,
 }) => {
-  const [dailyChartData, setDailyChartData] = useState<any>();
+  const [dailyChartData, setDailyChartData] = useState<ChartData[]>();
 
   useEffect(() => {
     axios

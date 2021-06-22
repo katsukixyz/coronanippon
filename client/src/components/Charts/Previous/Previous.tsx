@@ -9,7 +9,7 @@ import {
   Legend,
   Label,
 } from "recharts";
-import { ChartProps, ChartResp } from "../ChartTypes";
+import { ChartData, ChartProps, ChartResp } from "../ChartTypes";
 
 const axios = require("axios");
 
@@ -18,7 +18,7 @@ const Previous: React.FC<ChartProps> = ({
   previousVaccineToggle,
   style,
 }) => {
-  const [previousChartData, setPreviousChartData] = useState<any>();
+  const [previousChartData, setPreviousChartData] = useState<ChartData[]>();
 
   useEffect(() => {
     axios
