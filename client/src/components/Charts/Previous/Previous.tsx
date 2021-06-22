@@ -10,8 +10,7 @@ import {
   Label,
 } from "recharts";
 import { ChartData, ChartProps, ChartResp } from "../ChartTypes";
-
-const axios = require("axios");
+import axios from "axios";
 
 const Previous: React.FC<ChartProps> = ({
   selectedPref,
