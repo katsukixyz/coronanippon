@@ -23,7 +23,7 @@ const Previous: React.FC<ChartProps> = ({
   useEffect(() => {
     axios
       .get(
-        `http://${process.env.REACT_APP_API_ENDPOINT}/vaccines/${selectedPref}/${previousVaccineToggle}`
+        `https://${process.env.REACT_APP_API_ENDPOINT}/vaccines/${selectedPref}/${previousVaccineToggle}`
       )
       .then(function (resp: ChartResp) {
         setPreviousChartData(resp.data);
