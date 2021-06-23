@@ -20,12 +20,10 @@ const ChartWrapper: React.FC<ChartWrapperProps> = ({
           <Previous
             selectedPref={selectedPref}
             previousVaccineToggle={previousVaccineToggle}
-            style={{ maxWidth: "45%" }}
           />
           <Daily
             selectedPref={selectedPref}
             previousVaccineToggle={previousVaccineToggle}
-            style={{ maxWidth: "45%" }}
           />
         </div>
       ) : (

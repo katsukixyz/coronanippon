@@ -31,7 +31,7 @@ const App: React.FC = () => {
 
   useEffect(() => {
     axios
-      .get(`https://${process.env.REACT_APP_API_ENDPOINT}/vaccines/current`)
+      .get(`${process.env.REACT_APP_API_ENDPOINT}/vaccines/current`)
       .then(function (resp: ServerResp) {
         setMapData(addFill(resp.data.mapData, HexArr));
         setTableData({
@@ -46,8 +46,8 @@ const App: React.FC = () => {
 
   return (
     <div className="App">
-      <div className="content" style={{ paddingBottom: "2em" }}>
-        <LogoHeader style={{ paddingTop: "2em" }} />
+      <div className="content" style={{ padding: "2em" }}>
+        <LogoHeader />
         <div
           style={{
             display: "flex",
@@ -56,7 +56,7 @@ const App: React.FC = () => {
             justifyContent: "space-around",
           }}
         >
-          <div style={{ width: "50%", paddingBottom: "2em" }}>
+          <div style={{ width: "70%", paddingBottom: "2em" }}>
             <JapanMap mapData={mapData} setSelectedPref={setSelectedPref} />
             <ColorScale
               style={{
@@ -72,7 +72,7 @@ const App: React.FC = () => {
               overflowX: "auto",
               overflowY: "scroll",
               width: "18em",
-              height: "34em",
+              height: "45em",
             }}
             tableData={tableData}
           />
