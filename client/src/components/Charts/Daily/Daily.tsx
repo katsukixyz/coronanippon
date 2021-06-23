@@ -32,7 +32,11 @@ const Daily: React.FC<ChartProps> = ({
 
   return (
     <div
-      style={{ width: "45%", height: 500, minWidth: 500, paddingBottom: "3em" }}
+      style={{
+        minWidth: "45%",
+        height: 500,
+        paddingBottom: "3em",
+      }}
     >
       <p style={{ fontWeight: "bold", fontSize: "1.5em" }}>
         {previousVaccineToggle === "number"

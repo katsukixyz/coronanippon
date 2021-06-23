@@ -33,9 +33,8 @@ const Previous: React.FC<ChartProps> = ({
   return (
     <div
       style={{
-        width: "45%",
+        minWidth: "45%",
         height: 500,
-        minWidth: 500,
         paddingBottom: "3em",
       }}
     >
