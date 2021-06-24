@@ -32,6 +32,7 @@ const Daily: React.FC<ChartProps> = ({
 
   return (
     <div
+      className="dailyChart"
       style={{
         minWidth: "45%",
         height: 500,

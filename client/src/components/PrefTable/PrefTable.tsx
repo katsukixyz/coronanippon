@@ -55,7 +55,12 @@ const PrefTable: React.FC<TableProps> = ({ tableData, style }) => {
 
   return (
     <div style={style}>
-      <table style={{ borderCollapse: "separate", borderSpacing: 0 }}>
+      <table
+        style={{
+          borderCollapse: "separate",
+          borderSpacing: 0,
+        }}
+      >
         <thead>
           <tr>
             {columns.map((item) => (

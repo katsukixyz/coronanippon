@@ -32,6 +32,7 @@ const Previous: React.FC<ChartProps> = ({
 
   return (
     <div
+      className="previousChart"
       style={{
         minWidth: "45%",
         height: 500,

@@ -56,7 +56,13 @@ const App: React.FC = () => {
             justifyContent: "space-around",
           }}
         >
-          <div style={{ width: "70%", paddingBottom: "2em" }}>
+          <div
+            style={{
+              flex: "70%",
+              // maxWidth: "70%",
+              padding: "0em 1em 2em 0em",
+            }}
+          >
             <JapanMap mapData={mapData} setSelectedPref={setSelectedPref} />
             <ColorScale
               style={{
@@ -82,6 +88,7 @@ const App: React.FC = () => {
             display: "flex",
             flexDirection: "row",
             justifyContent: "center",
+            paddingTop: "2em",
             paddingBottom: "2em",
           }}
         >

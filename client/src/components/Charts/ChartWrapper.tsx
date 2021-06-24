@@ -14,21 +14,15 @@ const ChartWrapper: React.FC<ChartWrapperProps> = ({
   style,
 }) => {
   return (
-    <div>
-      {previousVaccineToggle ? (
-        <div style={style}>
-          <Previous
-            selectedPref={selectedPref}
-            previousVaccineToggle={previousVaccineToggle}
-          />
-          <Daily
-            selectedPref={selectedPref}
-            previousVaccineToggle={previousVaccineToggle}
-          />
-        </div>
-      ) : (
-        <div />
-      )}
+    <div className="chartWrapper" style={style}>
+      <Previous
+        selectedPref={selectedPref}
+        previousVaccineToggle={previousVaccineToggle}
+      />
+      <Daily
+        selectedPref={selectedPref}
+        previousVaccineToggle={previousVaccineToggle}
+      />
     </div>
   );
 };
