@@ -35,13 +35,6 @@ def fetchPref():
 if __name__ == '__main__':
     load_dotenv()
 
-    # if 'DATABASE_URL' in os.environ:
-    #     connection_str = os.environ['DATABASE_URL'].replace("postgres", "postgresql")
-    # else:
-    #     env_list = ['DB_USER', 'DB_PASSWORD', 'DB_DATABASE', 'DB_HOST', 'DB_PORT']
-    #     env_dict = {x.split('DB_')[1]: os.getenv(x) for x in env_list}
-    #     connection_str = f"postgresql+psycopg2://{env_dict['USER']}:{env_dict['PASSWORD']}@{env_dict['HOST']}:{env_dict['PORT']}/{env_dict['DATABASE']}"
-
     connection_str = f"postgresql+psycopg2://{os.getenv('DB_USER')}:{os.getenv('DB_PASSWORD')}@{os.getenv('DB_HOST')}:{os.getenv('DB_PORT')}/{os.getenv('DB_DATABASE')}"
 
     alchemyEngine = create_engine(connection_str)
