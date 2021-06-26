@@ -7,6 +7,7 @@ import PrefTable, {
   addBackgroundFill,
   TableData,
 } from "./components/PrefTable/PrefTable";
+import Footer from "./components/Footer/Footer";
 import "./App.css";
 import PrefSelector from "./components/PrefSelector/PrefSelector";
 import Toggle from "./components/Toggle/Toggle";
@@ -122,6 +123,7 @@ const App: React.FC = () => {
           selectedPref={selectedPref}
           previousVaccineToggle={previousVaccineToggle}
         />
+        <Footer />
       </div>
     </div>
   );
