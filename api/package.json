@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.ts",
   "scripts": {
-    "start": "nodemon index.ts"
+    "start": "if [$NODE_ENV == 'production']; then ts-node index.ts; else nodemon index.ts; fi"
   },
   "keywords": [],
   "author": "",
